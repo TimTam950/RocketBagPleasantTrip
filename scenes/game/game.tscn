@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6vnrxvacnldy"]
+
+[ext_resource type="PackedScene" uid="uid://tr88vqwbm6tb" path="res://scenes/background/back_ground.tscn" id="1_cgv0p"]
+[ext_resource type="PackedScene" uid="uid://cuv8arlqqdc3j" path="res://scenes/character/character.tscn" id="2_dtjy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcekc"]
+size = Vector2(81, 20)
+
+[node name="Game" type="Node2D"]
+
+[node name="BackGround" parent="." instance=ExtResource("1_cgv0p")]
+
+[node name="Character" parent="." instance=ExtResource("2_dtjy3")]
+position = Vector2(42, 583)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(5, 624)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(30.5, 0)
+shape = SubResource("RectangleShape2D_hcekc")

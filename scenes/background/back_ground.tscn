@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://tr88vqwbm6tb"]
+
+[ext_resource type="Texture2D" uid="uid://sjg2noaicsge" path="res://assets/cyberpunk-street-files/Assets/Version 1/PNG/layers/far-buildings.png" id="1_4soms"]
+[ext_resource type="Texture2D" uid="uid://b371ofsaoyl5t" path="res://assets/cyberpunk-street-files/Assets/Version 1/PNG/layers/foreground.png" id="2_1qxjv"]
+
+[node name="BackGround" type="Node2D"]
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+repeat_size = Vector2(1151, 0)
+autoscroll = Vector2(-10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(577, 120)
+scale = Vector2(4.50195, 3.89063)
+texture = ExtResource("1_4soms")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(1151, 0)
+autoscroll = Vector2(-40, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(577.5, 323.5)
+scale = Vector2(3.26989, 3.38021)
+texture = ExtResource("2_1qxjv")
