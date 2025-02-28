@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 const PROJECTILE = preload("res://scenes/projectile/projectile.tscn")
 @onready var marker_2d: Marker2D = $Marker2D
+@onready var shoot_timer: Timer = $ShootTimer
 
 @export var gravity := 300.0
 @export var flight_speed := 250.0
@@ -55,26 +56,31 @@ func change_state(new_state: CharacterState):
 			animated_sprite_2d.offset.x = 0.0
 			velocity.y = 300
 		CharacterState.FLY_SHOOTING:
-			animated_sprite_2d.play("fly_shoot")
+			
 			animated_sprite_2d.offset.x = 0.0
 			velocity.y = -250.0
 			if _can_shoot:
 				shoot()
+				animated_sprite_2d.play("fly_shoot")
 		CharacterState.SHOOTING:
 			if is_on_floor():
-				animated_sprite_2d.play("ground_shoot")
+				if _can_shoot:
+					shoot()
+					animated_sprite_2d.play("ground_shoot")
 				velocity.y = 300.0
 				animated_sprite_2d.offset.x = 0.0
 			else:
-				animated_sprite_2d.play("fly_shoot")
+				if _can_shoot:
+					shoot()
+					animated_sprite_2d.play("fly_shoot")
 				animated_sprite_2d.offset.x = 0.0
 				velocity.y = 300.0
-			if _can_shoot:
-				shoot()
+			
 				
 func shoot():
 	SignalManager.shoot.emit(self.global_position)
 	_can_shoot = false
-
+	shoot_timer.start()
+	
 func _on_shoot_timer_timeout() -> void:
 	_can_shoot = true
