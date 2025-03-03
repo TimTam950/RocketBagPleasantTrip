@@ -22,7 +22,6 @@ enum CharacterState {
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -75,8 +74,7 @@ func change_state(new_state: CharacterState):
 					animated_sprite_2d.play("fly_shoot")
 				animated_sprite_2d.offset.x = 0.0
 				velocity.y = 300.0
-			
-				
+						
 func shoot():
 	SignalManager.shoot.emit(self.global_position)
 	_can_shoot = false

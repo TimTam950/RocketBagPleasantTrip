@@ -380,7 +380,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fly_shoot",
-"speed": 15.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -420,7 +420,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"ground_shoot",
-"speed": 15.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -578,13 +578,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" groups=["character"]]
+collision_mask = 10
 script = ExtResource("1_njscn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_0nbul")
-animation = &"walking"
+animation = &"fly_shoot"
 autoplay = "idle"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
