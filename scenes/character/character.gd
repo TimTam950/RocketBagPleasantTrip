@@ -4,11 +4,15 @@ extends CharacterBody2D
 const PROJECTILE = preload("res://scenes/projectile/projectile.tscn")
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var health_bar: ProgressBar = $HealthBar
+@onready var i_frame_timer: Timer = $IFrameTimer
 
 @export var gravity := 300.0
 @export var flight_speed := 250.0
 var _current_state = CharacterState.IDLE
 var _can_shoot := true
+var _can_take_damage := true
+var health: int = 5
 
 enum CharacterState {
 	IDLE,
@@ -18,13 +22,8 @@ enum CharacterState {
 	SHOOTING
 }
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	SignalManager.take_damage.connect(take_damage)
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("fly") and Input.is_action_pressed("shoot"):
@@ -82,3 +81,22 @@ func shoot():
 	
 func _on_shoot_timer_timeout() -> void:
 	_can_shoot = true
+	
+func take_damage():
+	if _can_take_damage:
+		health -= 1
+		health_bar.value = health
+		_can_take_damage = false
+		i_frame_timer.start()
+		if health == 0:
+			save()
+			#game over
+			pass
+	
+func _on_i_frame_timer_timeout() -> void:
+	_can_take_damage = true
+	
+func save():
+	if State.app_state["current_score"] > State.app_state["high_score"]:
+		var fa = FileAccess.open("user://scores.dat", FileAccess.WRITE)
+		fa.store_line(JSON.stringify(State.app_state))

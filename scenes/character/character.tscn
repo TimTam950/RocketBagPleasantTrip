@@ -1,6 +1,6 @@
-[gd_scene load_steps=86 format=3 uid="uid://cuv8arlqqdc3j"]
+[gd_scene load_steps=89 format=3 uid="uid://cuv8arlqqdc3j"]
 
-[ext_resource type="Script" path="res://scenes/character/character.gd" id="1_njscn"]
+[ext_resource type="Script" uid="uid://dhxiuexta1wor" path="res://scenes/character/character.gd" id="1_njscn"]
 [ext_resource type="Texture2D" uid="uid://06hgugixhqke" path="res://assets/jetpackguy/__jet_pack_man_no_weapon_white_helmet_flying_no_movement.png" id="1_ohr4y"]
 [ext_resource type="Texture2D" uid="uid://drqs4lb7j01st" path="res://assets/jetpackguy/__jet_pack_man_with_weapon_standing_idle.png" id="1_qomi1"]
 [ext_resource type="Texture2D" uid="uid://4lexxhbc6ll8" path="res://assets/jetpackguy/__jet_pack_man_with_weapon_standing_jump.png" id="2_3jt8w"]
@@ -578,6 +578,16 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l884r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q52vl"]
+bg_color = Color(0.300406, 0.6178, 0.930341, 1)
+
+[sub_resource type="Theme" id="Theme_l884r"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_l884r")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_q52vl")
+
 [node name="Character" type="CharacterBody2D" groups=["character"]]
 collision_mask = 10
 script = ExtResource("1_njscn")
@@ -598,4 +608,19 @@ position = Vector2(29, -7)
 [node name="ShootTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 47.0
+offset_bottom = -45.0
+theme = SubResource("Theme_l884r")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="IFrameTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]

@@ -12,16 +12,21 @@ config_version=5
 
 config/name="RocketBagPleasantTrip"
 run/main_scene="res://scenes/game/game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalManager="*res://scripts/signal_manager.gd"
+State="*res://scripts/state.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="RocketBagPleasantTrip"
 
 [input]
 

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://tr88vqwbm6tb" path="res://scenes/background/back_ground.tscn" id="1_cgv0p"]
 [ext_resource type="PackedScene" uid="uid://cuv8arlqqdc3j" path="res://scenes/character/character.tscn" id="2_dtjy3"]
 [ext_resource type="PackedScene" uid="uid://coe102hpykiet" path="res://scenes/spawn_manager/spawn_manager.tscn" id="3_4hp05"]
-[ext_resource type="PackedScene" uid="uid://bmtwdphj7v562" path="res://scenes/enemies/linear_enemy.tscn" id="4_kvajw"]
+[ext_resource type="PackedScene" uid="uid://df0r7xwdwusif" path="res://scenes/score/score.tscn" id="5_lfrn8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcekc"]
 size = Vector2(81, 20)
@@ -13,7 +13,7 @@ size = Vector2(81, 20)
 [node name="BackGround" parent="." instance=ExtResource("1_cgv0p")]
 
 [node name="Character" parent="." instance=ExtResource("2_dtjy3")]
-position = Vector2(42, 583)
+position = Vector2(65, 577)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(5, 624)
@@ -35,11 +35,14 @@ shape = SubResource("RectangleShape2D_hcekc")
 low_spawn = NodePath("../EnemySpawnLow")
 high_spawn = NodePath("../EnemySpawnHigh")
 
-[node name="LinearEnemy" parent="." instance=ExtResource("4_kvajw")]
-position = Vector2(1095, 392)
-
 [node name="EnemySpawnLow" type="Marker2D" parent="."]
 position = Vector2(1169, 592)
 
 [node name="EnemySpawnHigh" type="Marker2D" parent="."]
 position = Vector2(1169, 47)
+
+[node name="Score" parent="." instance=ExtResource("5_lfrn8")]
+offset_left = 988.0
+offset_top = 617.0
+offset_right = 988.0
+offset_bottom = 617.0

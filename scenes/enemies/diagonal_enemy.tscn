@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bur5lmrn2vl32"]
+
+[ext_resource type="PackedScene" uid="uid://dsxypr8bcm007" path="res://scenes/enemies/base_enemy.tscn" id="1_3jtov"]
+[ext_resource type="Script" uid="uid://dhqu46pot4dod" path="res://scenes/enemies/diagonal_enemy.gd" id="2_4ug8i"]
+
+[node name="DiagonalEnemy" instance=ExtResource("1_3jtov")]
+script = ExtResource("2_4ug8i")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="." index="3"]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

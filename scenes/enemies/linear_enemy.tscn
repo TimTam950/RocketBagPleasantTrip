@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsxypr8bcm007" path="res://scenes/enemies/base_enemy.tscn" id="1_f0lf3"]
 [ext_resource type="Texture2D" uid="uid://4u76klc5j267" path="res://assets/ghost/Ghost_Move.png" id="2_dvva5"]
-[ext_resource type="Script" path="res://scenes/enemies/linear_enemy.gd" id="2_fj0s5"]
+[ext_resource type="Script" uid="uid://bv2a0ovieode2" path="res://scenes/enemies/linear_enemy.gd" id="2_fj0s5"]
 [ext_resource type="Texture2D" uid="uid://d128ekkg4ppci" path="res://assets/ghost/Ghost_Death.png" id="3_5hrgg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alplx"]
@@ -148,21 +148,11 @@ animations = [{
 size = Vector2(21, 23)
 
 [node name="LinearEnemy" instance=ExtResource("1_f0lf3")]
-scale = Vector2(2, 2)
 script = ExtResource("2_fj0s5")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3jx0p")
-animation = &"move"
-autoplay = "move"
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_i8xfu")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
-position = Vector2(7, 5.5)
-scale = Vector2(0.325, 0.575)
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

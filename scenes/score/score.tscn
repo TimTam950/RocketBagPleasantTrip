@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://df0r7xwdwusif"]
+
+[ext_resource type="LabelSettings" uid="uid://d1apf86n3jbbn" path="res://assets/label_default.tres" id="1_3auxm"]
+[ext_resource type="Script" uid="uid://csrygk3w500o4" path="res://scenes/score/score.gd" id="1_juhlf"]
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_juhlf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Current Score: 0"
+label_settings = ExtResource("1_3auxm")
