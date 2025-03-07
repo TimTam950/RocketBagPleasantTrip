@@ -30,5 +30,5 @@ func _on_body_entered(body: Node2D) -> void:
 func _disable_collision():
 	collision_shape_2d.disabled = false
 	
-func move(delta: float):
+func move(_delta: float):
 	pass

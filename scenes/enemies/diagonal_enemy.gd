@@ -4,7 +4,7 @@ var direction_vector: Vector2 = Vector2(-1, -1)
 
 func _ready() -> void:
 	speed = 200.0
-	points = 20.0
+	points = 20
 
 func _process(delta: float) -> void:
 	move(delta)

@@ -12,7 +12,7 @@ const PROJECTILE = preload("res://scenes/projectile/projectile.tscn")
 var _current_state = CharacterState.IDLE
 var _can_shoot := true
 var _can_take_damage := true
-var health: int = 5
+var health: int = 3
 
 enum CharacterState {
 	IDLE,
@@ -24,8 +24,9 @@ enum CharacterState {
 
 func _ready() -> void:
 	SignalManager.take_damage.connect(take_damage)
+	health_bar.max_value = health
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("fly") and Input.is_action_pressed("shoot"):
 		change_state(CharacterState.FLY_SHOOTING)
 	elif Input.is_action_pressed("fly"):
@@ -90,7 +91,7 @@ func take_damage():
 		i_frame_timer.start()
 		if health == 0:
 			save()
-			#game over
+			get_tree().change_scene_to_file("res://scenes/death_screen/death_screen.tscn")
 			pass
 	
 func _on_i_frame_timer_timeout() -> void:
@@ -98,5 +99,7 @@ func _on_i_frame_timer_timeout() -> void:
 	
 func save():
 	if State.app_state["current_score"] > State.app_state["high_score"]:
+		State.app_state["high_score"] = State.app_state["current_score"]
+		State.app_state["current_score"] = 0
 		var fa = FileAccess.open("user://scores.dat", FileAccess.WRITE)
 		fa.store_line(JSON.stringify(State.app_state))

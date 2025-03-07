@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	position.x += speed * delta
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	call_deferred("_disable_collision")
 	animation_player.play("fade")
 	animation_player.animation_finished.connect(func(_anim_name) -> void:
