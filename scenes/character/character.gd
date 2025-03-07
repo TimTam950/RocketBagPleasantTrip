@@ -92,7 +92,6 @@ func take_damage():
 		if health == 0:
 			save()
 			get_tree().change_scene_to_file("res://scenes/death_screen/death_screen.tscn")
-			pass
 	
 func _on_i_frame_timer_timeout() -> void:
 	_can_take_damage = true
